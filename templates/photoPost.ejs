@@ -1,0 +1,100 @@
+<!-- DO NOT MODIFY THIS FILE -->
+<!doctype html>
+<html lang="en">
+
+<style>
+    * {
+        font-family: "Times New Roman", Times, serif;
+    }
+</style>
+
+<head>
+	<meta charset="utf-8" />
+	<title>Madlibs</title>
+</head>
+
+<body>
+	<h1>Your Story</h1>
+    <div id="story">
+    Say '<%- ten %>,' the photographer said as the camera flashed! 
+    <%- seven %> and I had gone to <%- eight %> to get our photos 
+    taken today. The first photo we really wanted was a picture of 
+    us dressed as <%- one %> pretending to be a <%- four %>. When we 
+    saw the proofs of it, I was a bit <%- two %> because it looked 
+    different than in my head. (I hadn't imagined so many <%- three %> 
+    behind us.) However, the second photo was exactly what I wanted. 
+    We both looked like <%- six %> wearing <%- five %> and <%- nine %>
+    --exactly what I had in mind!
+    </div>
+    
+    <hr>
+    <label for="lang">Choose a language:</label>
+    <select name="lang" id="lang">
+        <option value="en">English</option>
+        <option value="es">Spanish</option>
+        <option value="pt">Portuguese</option>
+        <option value="ug">Uyghur</option>
+        <option value="ru">Russia</option>
+        <option value="zh">Chinese (simplified)</option>
+    </select>
+    <input type="button" value="Translate" onclick="button()">
+    <hr>
+
+    <form action="/submitStory" method="post">
+        <input type="hidden" id="one" name="one" value="<%- one %>">
+        <input type="hidden" id="two" name="two" value="<%- two %>">
+        <input type="hidden" id="three" name="three" value="<%- three %>">
+        <input type="hidden" id="four" name="four" value="<%- four %>">
+        <input type="hidden" id="five" name="five" value="<%- five %>">
+        <input type="hidden" id="six" name="six" value="<%- six %>">
+        <input type="hidden" id="seven" name="seven" value="<%- seven %>">
+        <input type="hidden" id="eight" name="eight" value="<%- eight %>">
+        <input type="hidden" id="nine" name="nine" value="<%- nine %>">
+        <input type="hidden" id="ten" name="ten" value="<%- ten %>">
+        <input type="hidden" id="type" name="type" value="photo">
+        <label for="user">Submit with email: </label>
+        <input type="email" id="user" name="user" required>
+        <input type="submit" value="Submit This Story">
+    </form>
+
+    <hr>
+    <a href="/">HOME</a>
+    <script>
+        // text translate api
+        const original = document.querySelector('#story').innerHTML;
+        const source_language = 'en';
+        const url = 'https://text-translator2.p.rapidapi.com/translate';
+        const options = {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/x-www-form-urlencoded',
+                'X-RapidAPI-Key': '87b2e88927msh0bf949ff612ca23p181facjsn64c835911e48',
+                'X-RapidAPI-Host': 'text-translator2.p.rapidapi.com'
+            }
+        };
+        async function button() {
+            var target_language = document.querySelector('#lang').value;
+
+            if (target_language == 'en') {
+                document.querySelector('#story').innerHTML = original;
+                return;
+            } 
+            
+            options.body = new URLSearchParams({
+                source_language: source_language,
+                target_language: target_language,
+                text: original
+            });
+
+            try {
+                const response = await fetch(url, options);
+                const result = await response.text();
+                document.querySelector('#story').innerHTML = JSON.parse(result).data.translatedText;
+            } catch (error) {
+                console.error(error);
+            }
+        }
+    </script>
+</body>
+
+</html>

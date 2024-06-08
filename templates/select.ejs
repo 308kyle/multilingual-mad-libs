@@ -1,0 +1,49 @@
+<!-- DO NOT MODIFY THIS FILE -->
+<!doctype html>
+<html lang="en">
+
+<style>
+
+    * {
+        font-family: "Times New Roman", Times, serif;
+    }
+
+    form {
+        font-weight: bold;
+    }
+
+    input {
+        margin: 1rem;
+    }
+
+    input[type=reset] {
+        margin-right: 0;
+    }
+
+</style>
+
+<head>
+	<meta charset="utf-8" />
+	<title>Madlibs Select</title>
+</head>
+
+<body>
+	<h1>View a Story</h1>
+
+    <p style="color: red;"><%- errorMessage %></p>
+
+    <form action="review" method="post"> 
+        <fieldset>
+            <label for="email">Email Address: </label>
+            <input type="email" id="email" name="email">
+        </fieldset>
+        <input type="reset" value="Reset">
+        <input type="submit" value="Submit Request">
+    </form>
+
+    <hr>
+    <a href="/">HOME</a>
+
+</body>
+
+</html>

@@ -1,0 +1,58 @@
+<!-- DO NOT MODIFY THIS FILE -->
+<!doctype html>
+<html lang="en">
+
+<style>
+
+    * {
+        font-family: "Times New Roman", Times, serif;
+    }
+
+    form {
+        font-weight: bold;
+    }
+
+    input {
+        margin: 1rem;
+    }
+
+    textarea {
+        height: 5rem;
+        width: 40rem;
+    }
+
+    input[type=reset] {
+        margin-right: 0;
+    }
+
+    button {
+        font-size: 1.5rem;
+    }
+
+</style>
+
+<head>
+	<meta charset="utf-8" />
+	<title>Madlibs Story Creation</title>
+</head>
+
+<body>
+	<h1>Select a story to create!</h1>
+
+    <button onclick="location.href='/tacoStory'" type="button">Taco Story!</button> 
+    <button onclick="location.href='/photoStory'" type="button">Taking a Photo!</button>
+    <button onclick="location.href='/pizzaStory'" type="button">Pizza Party!</button>
+
+    <hr>
+    <a href="/">HOME</a>
+
+</body>
+
+<script>
+    function submitWithDate() {
+        document.getElementById("date").value = Date();
+        return true;
+    }
+</script>
+
+</html>
