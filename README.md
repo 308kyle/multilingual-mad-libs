@@ -3,9 +3,9 @@
 ## Description
 
 This is a web application that allows users to create customizable stories by filling in the blanks. It features the following components:
-1. Mad Libs Generator
-2. Language Translation
-3. MongoDB Data Collection
+1. Generate fun and custom Mad Libs stories.
+2. Translate the stories into different languages.
+3. Stores user stories into a MongoDB collection.
 
 ## Technologies Used
 - HTML/CSS
